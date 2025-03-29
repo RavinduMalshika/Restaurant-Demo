@@ -1,68 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Serif Georgian', 'Times New Roman', Times, serif, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #FFF5E1;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.about-image {
+  transform: rotate(30deg);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.text-glow:hover {
+  text-shadow: 0 0 10px #E63946, 0 0 20px #F1A7A3, 0 0 30px #F8D7D1;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.glowing-text {
+  text-shadow: 0 0 10px #FFF5E1, 0 0 20px #FFD700, 0 0 30px #FF6347;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.masked-image {
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: url('../src/assets/utils/mask-image.png');
+  /* For Safari */
+  mask-image: url('../src/assets/utils/mask-image.png');
+  /* Standard */
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.scroll-container {
+  overflow-y: scroll;  /* Enable vertical scrolling */
+  scrollbar-gutter: stable both-edges; /* Keeps space for scrollbar */
+  direction: rtl;  /* Ensures text direction remains normal */
 }
+
+.scroll-content {
+  direction: ltr; /* Keeps the text direction normal */
+}
+
+/* Custom scrollbar width */
+.scroll-container::-webkit-scrollbar {
+  width: 10px; /* Adjust width */
+}
+
+/* Track (background of scrollbar) */
+.scroll-container::-webkit-scrollbar-track {
+  background: #F4E1C1; 
+  border-radius: 10px; /* Rounded edges */
+  border: 3px solid #FFF5E1;
+}
+
+/* Scrollbar handle */
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #DEA646; 
+  border-radius: 10px; /* Rounded edges */
+}
+
+/* Scrollbar handle on hover */
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #E09D2A;
+  cursor: grab;
+}
+
