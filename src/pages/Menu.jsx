@@ -230,8 +230,10 @@ const Menu = () => {
 
     useEffect(() => {
         if (!Array.isArray(menuItems)) {
-            console.log(menuItems.subCategories);
             setSubCategoires(menuItems.subCategories);
+            setSelectedItem(menuItems.nonAlcoholic[0]);
+        } else {
+            setSelectedItem(menuItems[0]);
         }
     }, [menuItems])
 
@@ -240,7 +242,7 @@ const Menu = () => {
             <div ref={topBarRef} className="topBar">
                 <TopBar isExpandable={false} />
 
-                <ul className="flex flex-row font-great-vibes text-2xl text-warm-white gap-x-10 bg-charcoal rounded-b-full justify-center py-5">
+                <ul className="hidden md:flex flex-row font-great-vibes text-2xl text-warm-white gap-x-10 bg-charcoal rounded-b-full justify-center py-5">
                     {menuCategories.map((category, index) => (
                         <li key={index} className={`${selectedCategory === index ? "text-beige glowing-text" : "text-glow"} cursor-pointer`} onClick={() => setSelectedCategory(index)}>{category}</li>
                     ))
@@ -248,31 +250,20 @@ const Menu = () => {
                 </ul>
             </div>
 
-            <div className="grid grid-cols-2 items-center p-10" style={{ height: `calc(100vh - ${topBarHeight}px)` }}>
-                <div className="max-h-full h-full box-border scroll-container">
-                    {Array.isArray(menuItems) ? (
-                        <div className="h-full flex flex-col justify-center scroll-content ps-10">
-                            {menuItems.map((item, index) => (
-                                <div key={index} className="flex flex-col gap-y-5 box-border mb-10">
-                                    <div className="flex flex-row gap-x-3 items-center group">
-                                        <div className="flex relative w-fit items-center justify-center mb-1">
-                                            <div className="bg-black h-4 w-4 rotate-45"></div>
-                                            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-black h-2 w-2 rounded-full ${selectedItem?.name === item.name ? "bg-rose" : "bg-warm-white group-hover:bg-yellow-400"}`}></div>
-                                        </div>
-                                        <p className="font-great-vibes text-3xl cursor-pointer" onClick={() => setSelectedItem(item)}>{item.name}</p>
-                                    </div>
-                                    <p className={`text-charcoal text-lg transition-all duration-500 ease-in-out ${selectedItem?.name === item.name ? "opacity-100" : "opacity-0 hidden pointer-events-none"}`}>
-                                        {item.description}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        subCategories.map((subCategory, index) => (
-                            <div className="flex flex-col gap-y-10 box-border mb-10 scroll-content ps-10" key={index}>
-                                <h3 className="font-great-vibes text-4xl text-center">{subCategory.name}</h3>
-                                {menuItems[subCategory.key].map((item, itemIndex) => (
-                                    <div key={itemIndex} className="flex flex-col gap-y-5 box-border">
+            <div className="flex flex-row">
+                <ul className="flex md:hidden flex-col font-great-vibes text-2xl text-warm-white gap-y-10 bg-charcoal rounded-r-full justify-center px-3">
+                    {menuCategories.map((category, index) => (
+                        <li key={index} className={`${selectedCategory === index ? "text-beige glowing-text" : "text-glow"} cursor-pointer`} onClick={() => setSelectedCategory(index)}>{category}</li>
+                    ))
+                    }
+                </ul>
+
+                <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center p-10" style={{ height: `calc(100vh - ${topBarHeight}px)` }}>
+                    <div className="z-10 max-h-full h-full box-border scroll-container">
+                        {Array.isArray(menuItems) ? (
+                            <div className="h-full flex flex-col justify-center scroll-content ps-10">
+                                {menuItems.map((item, index) => (
+                                    <div key={index} className="flex flex-col gap-y-5 box-border mb-10 bg-white/10 md:bg-transparent rounded-xl">
                                         <div className="flex flex-row gap-x-3 items-center group">
                                             <div className="flex relative w-fit items-center justify-center mb-1">
                                                 <div className="bg-black h-4 w-4 rotate-45"></div>
@@ -286,12 +277,34 @@ const Menu = () => {
                                     </div>
                                 ))}
                             </div>
-                        ))
-                    )}
-                </div>
+                        ) : (
+                            subCategories.map((subCategory, index) => (
+                                <div className="flex flex-col gap-y-10 box-border mb-10 scroll-content ps-10 justify-center" key={index}>
+                                    <h3 className="font-great-vibes text-4xl text-center">{subCategory.name}</h3>
+                                    {menuItems[subCategory.key].map((item, itemIndex) => (
+                                        <div key={itemIndex} className="flex flex-col gap-y-5 box-border justify-center">
+                                            <div className="flex flex-row gap-x-3 items-center group">
+                                                <div className="flex relative w-fit items-center justify-center mb-1">
+                                                    <div className="bg-black h-4 w-4 rotate-45"></div>
+                                                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-black h-2 w-2 rounded-full ${selectedItem?.name === item.name ? "bg-rose" : "bg-warm-white group-hover:bg-yellow-400"}`}></div>
+                                                </div>
+                                                <p className="font-great-vibes text-3xl cursor-pointer" onClick={() => setSelectedItem(item)}>{item.name}</p>
+                                            </div>
+                                            <p className={`text-charcoal text-lg transition-all duration-500 ease-in-out ${selectedItem?.name === item.name ? "opacity-100" : "opacity-0 hidden pointer-events-none"}`}>
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))
+                        )}
+                    </div>
 
-                <div className="relative w-full object-cover px-10">
-                    <img className="masked-image object-cover transition-all duration-300 ease-in-out" src={selectedItem?.image} alt="Image to Mask" />
+                    <div className="hidden md:block relative w-full object-cover px-10">
+                        <img className="masked-image object-cover transition-all duration-300 ease-in-out" src={selectedItem?.image} alt="Image to Mask" />
+                    </div>
+
+                    <img className="md:hidden absolute z-0 masked-image-vertical object-cover transition-all duration-300 ease-in-out" src={selectedItem?.image} alt="Image to Mask" />
                 </div>
             </div>
         </div>

@@ -71,7 +71,7 @@ const AboutItem = ({ image, title, description, variant, buttonText, buttonClick
     switch (variant) {
         case "right":
             return (
-                <div className="flex flex-row items-center">
+                <div className="flex flex-col md:flex-row items-center gap-y-10">
                     <motion.div
                         ref={imageRef}
                         variants={imageVariants}
@@ -94,7 +94,7 @@ const AboutItem = ({ image, title, description, variant, buttonText, buttonClick
                         variants={textVariants}
                         animate={isTextInView ? 'onScreen' : 'offScreen'}
                         transition={textTransition}
-                        className="flex flex-col basis-1/2 gap-y-10 pe-32"
+                        className="flex flex-col basis-1/2 gap-y-10 px-5 md:pe-32"
                     >
                         <h2 className="text-4xl">{title}</h2>
 
@@ -111,13 +111,13 @@ const AboutItem = ({ image, title, description, variant, buttonText, buttonClick
             );
         case "left":
             return (
-                <div className="flex flex-row items-center">
+                <div className="flex flex-col-reverse md:flex-row items-center gap-y-10">
                     <motion.div
                         ref={textRef}
                         variants={textVariants}
                         animate={isTextInView ? 'onScreen' : 'offScreen'}
                         transition={textTransition}
-                        className="flex flex-col basis-1/2 gap-y-10 ps-32 items-start"
+                        className="flex flex-col basis-1/2 gap-y-10 px-5 md:ps-32 items-start"
                     >
                         <h2 className="text-4xl">{title}</h2>
 

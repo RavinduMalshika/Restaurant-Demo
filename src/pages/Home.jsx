@@ -4,6 +4,7 @@ import bannerImage2 from "../assets/images/banner-2.jpg";
 import bannerImage3 from "../assets/images/banner-3.jpg";
 import { useEffect, useState } from "react";
 import AboutSection from "../components/AboutSection";
+import Footer from "../components/Footer";
 
 const Home = () => {
     const [bannerImageIndex, setBannerImageIndex] = useState(0);
@@ -27,8 +28,8 @@ const Home = () => {
 
             <div className="relative banner w-screen h-screen bg-black overflow-hidden">
                 <div className="absolute flex flex-col justify-center items-center top-0 left-0 min-w-full min-h-full bg-black/30 z-20">
-                    <p className="text-beige text-banner font-great-vibes -indent-16">A Taste of Luxury,</p>
-                    <p className="text-beige text-banner font-great-vibes indent-16">a Touch of Home.</p>
+                    <p className="text-beige text-5xl md:text-banner font-great-vibes -indent-10 md:-indent-16">A Taste of Luxury,</p>
+                    <p className="text-beige text-5xl md:text-banner font-great-vibes indent-10 md:indent-16">a Touch of Home.</p>
                 </div>
                 {bannerImages.map((img, index) => (
                     <img
@@ -41,6 +42,8 @@ const Home = () => {
             </div>
 
             <AboutSection />
+
+            <Footer />
         </div>
     );
 }

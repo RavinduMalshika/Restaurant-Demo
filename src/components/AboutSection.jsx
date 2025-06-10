@@ -18,7 +18,7 @@ const AboutSection = () => {
                 title={"About Lumière Bistro"}
                 description={"Welcome to Lumière Bistro, where elegance meets comfort in a dining experience like no other. Nestled in a warm and inviting ambiance, our venue blends modern sophistication with a touch of timeless charm."}
                 buttonText={"Learn More"}
-                buttonClick={() => console.log("Learn More")}
+                buttonClick={() => navigate("/about-us")}
             />
 
             <AboutItem

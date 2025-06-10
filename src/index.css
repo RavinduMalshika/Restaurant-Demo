@@ -40,6 +40,20 @@
   -webkit-mask-repeat: no-repeat;
 }
 
+.masked-image-vertical {
+  width: auto;
+  height: 100%;
+  -webkit-mask-image: url('../src/assets/utils/mask-image-vertical.png');
+  /* For Safari */
+  mask-image: url('../src/assets/utils/mask-image-vertical.png');
+  /* Standard */
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  opacity: 40%;
+}
+
 .scroll-container {
   overflow-y: scroll;  /* Enable vertical scrolling */
   scrollbar-gutter: stable both-edges; /* Keeps space for scrollbar */
