@@ -1,11 +1,15 @@
 import TopBar from "../components/TopBar";
 import headerImage from "../assets/images/about-us-header.jpg";
 import Footer from "../components/Footer";
+import { useState } from "react";
+import ReserveDialog from "../components/ReserveDialog";
 
 const AboutUs = () => {
+    const [showReserveDialog, setShowReserveDialog] = useState(false);
+
     return (
         <div className="flex flex-col min-h-screen max-w-screen overflow-hidden">
-            <TopBar />
+            <TopBar reserveClick={() => setShowReserveDialog(true)} />
 
             <div className="block relative w-full h-fit object-cover">
                 <img className="object-cover w-full aspect-3/2 lg:aspect-3/1 object-center" src={headerImage} />
@@ -36,6 +40,10 @@ const AboutUs = () => {
             </div>
 
             <Footer />
+
+            {showReserveDialog &&
+                <ReserveDialog handleClose={() => setShowReserveDialog(false)} />
+            }
         </div>
     );
 };

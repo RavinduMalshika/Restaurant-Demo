@@ -5,9 +5,11 @@ import bannerImage3 from "../assets/images/banner-3.jpg";
 import { useEffect, useState } from "react";
 import AboutSection from "../components/AboutSection";
 import Footer from "../components/Footer";
+import ReserveDialog from "../components/ReserveDialog";
 
 const Home = () => {
     const [bannerImageIndex, setBannerImageIndex] = useState(0);
+    const [showReserveDialog, setShowReserveDialog] = useState(false);
 
     const bannerImages = [
         bannerImage1,
@@ -24,7 +26,7 @@ const Home = () => {
 
     return (
         <div className="max-w-screen overflow-hidden">
-            <TopBar />
+            <TopBar reserveClick={() => setShowReserveDialog(true)} />
 
             <div className="relative banner w-screen h-screen bg-black overflow-hidden">
                 <div className="absolute flex flex-col justify-center items-center top-0 left-0 min-w-full min-h-full bg-black/30 z-20">
@@ -41,9 +43,13 @@ const Home = () => {
                 ))}
             </div>
 
-            <AboutSection />
+            <AboutSection reserveClicked={() => setShowReserveDialog(true)} />
 
             <Footer />
+
+            {showReserveDialog &&
+                <ReserveDialog handleClose={() => setShowReserveDialog(false)} />
+            }
         </div>
     );
 }

@@ -13,10 +13,6 @@ const AboutItem = ({ image, title, description, variant, buttonText, buttonClick
     const isTextInView = useInView(textRef, { once: false, margin: "-20% 0px -20% 0px" });
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log("Element is in view isImageInView: ", isImageInView)
-    }, [isImageInView])
-
     const imageVariants = {
         offScreenRight: {
             scale: 0.3,

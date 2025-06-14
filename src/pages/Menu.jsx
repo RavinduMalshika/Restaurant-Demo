@@ -23,6 +23,7 @@ import drinksImage8 from "../assets/images/drinks-8.jpg";
 import dessertImage1 from "../assets/images/desserts-1.jpg";
 import dessertImage2 from "../assets/images/desserts-2.jpg";
 import dessertImage3 from "../assets/images/desserts-3.jpg";
+import ReserveDialog from "../components/ReserveDialog";
 
 const Menu = () => {
     const [selectedCategory, setSelectedCategory] = useState(0);
@@ -31,6 +32,7 @@ const Menu = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const topBarRef = useRef(null);
     const [topBarHeight, setTopBarHeight] = useState(0);
+    const [showReserveDialog, setShowReserveDialog] = useState(false);
 
     const menuCategories = [
         "Starters",
@@ -240,7 +242,7 @@ const Menu = () => {
     return (
         <div className="flex flex-col h-screen max-h-screen overflow-hidden justify-between">
             <div ref={topBarRef} className="topBar">
-                <TopBar isExpandable={false} />
+                <TopBar isExpandable={false} reserveClick={() => setShowReserveDialog(true)} />
 
                 <ul className="hidden md:flex flex-row font-great-vibes text-2xl text-warm-white gap-x-10 bg-charcoal rounded-b-full justify-center py-5">
                     {menuCategories.map((category, index) => (
@@ -307,6 +309,10 @@ const Menu = () => {
                     <img className="md:hidden absolute z-0 masked-image-vertical object-cover transition-all duration-300 ease-in-out" src={selectedItem?.image} alt="Image to Mask" />
                 </div>
             </div>
+
+            {showReserveDialog &&
+                <ReserveDialog handleClose={() => setShowReserveDialog(false)} />
+            }
         </div>
     );
 };

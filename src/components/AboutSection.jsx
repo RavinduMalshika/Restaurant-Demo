@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import AboutItem from "./AboutItem";
 import { useNavigate } from "react-router-dom";
 
-const AboutSection = () => {
+const AboutSection = ({ reserveClicked }) => {
     const navigate = useNavigate();
 
     return (
@@ -36,7 +36,7 @@ const AboutSection = () => {
                 title={"Meet the Chef"}
                 description={"Our talented chef brings years of culinary expertise, blending classic techniques with innovative flavors. Passionate about creating unforgettable dining experiences, they ensure that every dish reflects a commitment to excellence and artistry."}
                 buttonText={"Make a Reservation"}
-                buttonClick={() => console.log("Make a Reservation")}
+                buttonClick={reserveClicked}
             />
         </div>
     );

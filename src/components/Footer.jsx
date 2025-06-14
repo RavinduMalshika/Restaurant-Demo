@@ -5,8 +5,6 @@ const Footer = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    console.log(location.pathname);
-
     return (
         <div className="w-full bg-black text-beige p-5 grid grid-cols-2 md:grid-cols-3 gap-y-5">
             <div className="md:hidden col-span-2 flex flex-col text-center justify-center gap-y-2">
@@ -20,7 +18,7 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-col justify-center text-start gap-y-2">
-                <h1>Sitemap</h1>
+                <h1 className="text-lg">Sitemap</h1>
                 <p className="cursor-pointer">Reserve Now</p>
                 <p className="cursor-pointer" onClick={() => navigate('/menu')}>Menu</p>
                 <p className="cursor-pointer" onClick={() => navigate('/about-us')}>About Us</p>
@@ -29,12 +27,12 @@ const Footer = () => {
 
             <div className="hidden md:flex flex-col text-center justify-center gap-y-2">
                 <div className="flex fex-row justify-center gap-x-5 mb-2">
-                    <a href="https://www.instagram.com" target="_blank"><BsInstagram className="size-6" /></a>
-                    <a href="https://www.facebook.com" target="_blank"><BsFacebook className="size-6" /></a>
-                    <a href="https://www.yelp.com" target="_blank"><BsYelp className="size-6" /></a>
+                    <a href="https://www.instagram.com" target="_blank"><BsInstagram className="size-6 hover:text-rose" /></a>
+                    <a href="https://www.facebook.com" target="_blank"><BsFacebook className="size-6 hover:text-rose" /></a>
+                    <a href="https://www.yelp.com" target="_blank"><BsYelp className="size-6 hover:text-rose" /></a>
                 </div>
                 <p className={`font-great-vibes text-4xl ${location.pathname === '/' ? 'cursor-default' : 'cursor-pointer'}`} onClick={() => navigate('/')}>Lumiere Bistro</p>
-                <a href="https://www.ravindumalshika.com" target="_blank" className="text-sm">Created by Ravindu Malshika</a>
+                <a href="https://www.ravindumalshika.com" target="_blank" className="text-sm hover:text-rose">Created by Ravindu Malshika</a>
             </div>
 
             <div className="flex flex-col justify-center text-end gap-y-2">
